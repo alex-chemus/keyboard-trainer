@@ -135,9 +135,6 @@ function removeSelect() {
 
   keys.rightShift = false
   keys.leftShift = false
-
-  shifts.left = false
-  shifts.right = false
 }
 
 // функция выделает элементы,создаёт в глобальном масссив с клавишами
