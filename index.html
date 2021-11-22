@@ -5,81 +5,94 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keyboard trainer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="wrapper">
         <div class="text-container">
-            <p class="text">
-            </p>
+            <p class="text"></p>
         </div>
 
         <div class="keyboard">
             <div class="row">
-                <div class="key little">`</div>
-                <div class="key little">1</div>
-                <div class="key ring">2</div>
-                <div class="key middle">3</div>
-                <div class="key forefinger">4</div>
-                <div class="key forefinger">5</div>
-                <div class="key forefinger">6</div>
-                <div class="key forefinger">7</div>
-                <div class="key middle">8</div>
-                <div class="key ring">9</div>
-                <div class="key little">0</div>
-                <div class="key little">-</div>
-                <div class="key little">=</div>
-                <div class="key s125 little">back</div>
+                <div class="key little" data-which="192">`</div>
+                <div class="key little" data-which="49">1</div>
+                <div class="key ring" data-which="50">2</div>
+                <div class="key middle" data-which="51">3</div>
+                <div class="key forefinger" data-which="52">4</div>
+                <div class="key forefinger" data-which="53">5</div>
+                <div class="key forefinger" data-which="54">6</div>
+                <div class="key forefinger" data-which="55">7</div>
+                <div class="key middle" data-which="56">8</div>
+                <div class="key ring" data-which="57">9</div>
+                <div class="key little" data-which="48">0</div>
+                <div class="key little" data-which="173">-</div>
+                <div class="key little" data-which="61">=</div>
+                <div class="key s125 little" data-which="8">back</div>
             </div>
             <div class="row">
-                <div class="key little s125">tab</div>
-                <div class="key little">q</div>
-                <div class="key ring">w</div>
-                <div class="key middle">e</div>
-                <div class="key forefinger">r</div>
-                <div class="key forefinger">t</div>
-                <div class="key forefinger">y</div>
-                <div class="key forefinger">u</div>
-                <div class="key middle">i</div>
-                <div class="key ring">o</div>
-                <div class="key little">p</div>
-                <div class="key little">[</div>
-                <div class="key little">]</div>
-                <div class="key little">\</div>
+                <div class="key little s125" data-which="9">tab</div>
+                <div class="key little" data-which="81">q</div>
+                <div class="key ring" data-which="87">w</div>
+                <div class="key middle" data-which="69">e</div>
+                <div class="key forefinger" data-which="82">r</div>
+                <div class="key forefinger" data-which="84">t</div>
+                <div class="key forefinger" data-which="89">y</div>
+                <div class="key forefinger" data-which="85">u</div>
+                <div class="key middle" data-which="73">i</div>
+                <div class="key ring" data-which="79">o</div>
+                <div class="key little" data-which="80">p</div>
+                <div class="key little" data-which="219">[</div>
+                <div class="key little" data-which="221">]</div>
+                <div class="key little" data-which="220">\</div>
             </div>
             <div class="row">
-                <div class="key little s150">caps</div>
-                <div class="key little">a</div>
-                <div class="key ring">s</div>
-                <div class="key middle">d</div>
-                <div class="key forefinger">f</div>
-                <div class="key forefinger">g</div>
-                <div class="key forefinger">h</div>
-                <div class="key forefinger">j</div>
-                <div class="key middle">k</div>
-                <div class="key ring">l</div>
-                <div class="key little">;</div>
-                <div class="key little">'</div>
-                <div class="key little s150">enter</div>
+                <div class="key little s150" data-which="20">caps</div>
+                <div class="key little" data-which="65">a</div>
+                <div class="key ring" data-which="83">s</div>
+                <div class="key middle" data-which="68">d</div>
+                <div class="key forefinger" data-which="70">f</div>
+                <div class="key forefinger" data-which="71">g</div>
+                <div class="key forefinger" data-which="72">h</div>
+                <div class="key forefinger" data-which="74">j</div>
+                <div class="key middle" data-which="75">k</div>
+                <div class="key ring" data-which="76">l</div>
+                <div class="key little" data-which="59">;</div>
+                <div class="key little" data-which="222">'</div>
+                <div class="key little s150" data-which="13">enter</div>
             </div>
             <div class="row">
-                <div class="key little s200">shift</div>
-                <div class="key little">z</div>
-                <div class="key ring">x</div>
-                <div class="key middle">c</div>
-                <div class="key forefinger">v</div>
-                <div class="key forefinger">b</div>
-                <div class="key forefinger">n</div>
-                <div class="key forefinger">m</div>
-                <div class="key middle">,</div>
-                <div class="key ring">.</div>
-                <div class="key little">/</div>
-                <div class="key little s200">shift</div>
+                <div class="key little s200 left-shift" data-which="16">shift</div>
+                <div class="key little" data-which="90">z</div>
+                <div class="key ring" data-which="88">x</div>
+                <div class="key middle" data-which="67">c</div>
+                <div class="key forefinger" data-which="86">v</div>
+                <div class="key forefinger" data-which="66">b</div>
+                <div class="key forefinger" data-which="78">n</div>
+                <div class="key forefinger" data-which="77">m</div>
+                <div class="key middle" data-which="188">,</div>
+                <div class="key ring" data-which="190">.</div>
+                <div class="key little" data-which="191">/</div>
+                <div class="key little s200 right-shift" data-which="16">shift</div>
             </div>
 
             <div class="row jc-center">
-                <div class="key space">space</div>
+                <div class="key space" data-which="32">space</div>
             </div>
+        </div>
+
+        <!-- предупреждение о ширине экрана или недоступном устройстве -->
+        <div class="warning">
+            <h3>Sorry, but your device is not supported</h3>
+        </div>
+
+        <!-- предупреждение по окончании печати -->
+        <div class="success">
+            <h3>Congrats!</h3>
+            <button>Restart</button>
         </div>
     </div>
 
