@@ -44,6 +44,7 @@ function fetchData() {
   fetch('https://litipsum.com/api/1')
     .then(res => res.text())
     .then(data => {
+      console.log(data)
       if (dataIsValid(data)) {
         appendText($text, data)
       } else {
@@ -179,6 +180,15 @@ function selectKeys(char) {
 
     // проверка на пробел
     if ( $(this).hasClass('space') && char==' ' ) {
+      const $key = $(this)
+      const which = $key.attr('data-which')
+      keys.keyWhich = which
+
+      $key.addClass('highlight-key')
+    }
+
+    // проверка на апостроф
+    if ( char==='`' && $(this).html()==='`' ) {
       const $key = $(this)
       const which = $key.attr('data-which')
       keys.keyWhich = which
