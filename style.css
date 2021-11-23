@@ -177,7 +177,6 @@ body {
     overflow: hidden;
     margin-bottom: 5rem;
     position: relative;
-    white-space: pre-wrap;
 }
 
 .text-container::after {
@@ -197,6 +196,7 @@ body {
     line-height: 1.7em;
     color: #eee;
     position: relative;
+    white-space: pre-wrap;
 }
 
 .highlight-text {

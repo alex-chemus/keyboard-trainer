@@ -1,25 +1,5 @@
 $(function() {
   $text = $('.text')
-  //$typed = $('.typed-text')
-  //$rest = $('.rest-text')
-
-  /*fetch('https://litipsum.com/api/1')
-    .then(res => res.text())
-    .then(data => {
-      $text.text(data)
-    })
-    .then(() => {
-      //current character index
-      //const currIndex = 0;
-      const text = $text.html()
-      const after = text.slice(1)
-      const char = text.slice(0, 1)
-      const content = `<span class="typed"></span><span class="highlight">${char}</span><span class="rest">${after}</span>`
-
-      $text.html(content)
-
-      document.addEventListener('keyup', handleKeyup)
-    })*/
   fetchData()
 })
 
@@ -44,7 +24,6 @@ function fetchData() {
   fetch('https://litipsum.com/api/1')
     .then(res => res.text())
     .then(data => {
-      console.log(data)
       if (dataIsValid(data)) {
         appendText($text, data)
       } else {
@@ -56,7 +35,6 @@ function fetchData() {
 //проверка на валидность текста
 function dataIsValid(data) {
   const regex = /[\sa-zA-Z0-9=[\]:;'",.?/!-]+/gi
-  //console.log('data validation: ', regex.test(data))
   return regex.test(data)
 }
 
@@ -109,8 +87,6 @@ function handleKeyup(event) {
   if (event.which != keys.keyWhich 
     || keys.leftShift != shifts.left
     || keys.rightShift != shifts.right) {
-      console.log(keys)
-      console.log(shifts)
       return
   }  
 
@@ -187,11 +163,23 @@ function selectKeys(char) {
       $key.addClass('highlight-key')
     }
 
-    // проверка на апостроф
+    // проверка на `
     if ( char==='`' && $(this).html()==='`' ) {
       const $key = $(this)
       const which = $key.attr('data-which')
       keys.keyWhich = which
+
+      $key.addClass('highlight-key')
+    } 
+
+    // проверка на !
+    if ( char==='!' && $(this).html()==='1' ) {
+      const $key = $(this)
+      const which = $key.attr('data-which')
+      keys.keyWhich = which
+
+      keys.rightShift = true
+      $('.right-shift').addClass('highlight-key')
 
       $key.addClass('highlight-key')
     }
