@@ -87,8 +87,6 @@ function handleKeyup(event) {
   }
 
   // валидация правильности нажатия 
-  console.log('validation: ', event.code)
-  console.log(keys)
   if (event.code != keys.code 
     || keys.leftShift != shifts.left
     || keys.rightShift != shifts.right) {
@@ -197,8 +195,6 @@ function selectKeys(char) {
     }
 
     function setSelect($key, shift=null) {
-      //const $key = $(this)
-      console.log('from setSelect ', $key.attr('data-code'))
       const code = $key.attr('data-code')
       const config = {
         code: null,
@@ -257,10 +253,7 @@ function selectKeys(char) {
 
     // проверка на ;
     if ( char===':' && $(this).html()===';' ) {
-      console.log(":")
       setSelect($(this), 'leftShift')
     }
   })
-
-  console.log(keys)
 }
