@@ -201,6 +201,7 @@ body {
 
 .highlight-text {
     background-color: green;
+    border: 1px solid green;
 }
 
 .typed {

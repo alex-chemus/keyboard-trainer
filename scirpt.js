@@ -95,6 +95,7 @@ function handleKeyup(event) {
 
   // махинации с контентом в html
   $typed.html($typed.html() + $highlight.html())
+  $highlight.empty()
   $highlight.html($rest.html()[0])
   $rest.html( $rest.html().slice(1) )
 
@@ -253,6 +254,15 @@ function selectKeys(char) {
 
     // проверка на ;
     if ( char===':' && $(this).html()===';' ) {
+      setSelect($(this), 'leftShift')
+    }
+
+    // проверка на (
+    if ( char==='(' && $(this).html()==='9' ) {
+      setSelect($(this), 'leftShift')
+    }
+
+    if ( char===')' && $(this).html()==='0' ) {
       setSelect($(this), 'leftShift')
     }
   })
