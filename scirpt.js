@@ -4,7 +4,7 @@ $(function() {
 })
 
 const keys = {
-  keyWhich: null,
+  code: null,
   leftShift: false,
   rightShift: false,
 }
@@ -13,6 +13,9 @@ const shifts = {
   left: false,
   right: false,
 }
+
+// кеш клавиш где ключ - строка, значение - конфиг keys
+const keysMap = new Map()
 
 document.querySelector('.success button').addEventListener('click', () => {
   window.location.reload()
@@ -84,7 +87,9 @@ function handleKeyup(event) {
   }
 
   // валидация правильности нажатия 
-  if (event.which != keys.keyWhich 
+  console.log('validation: ', event.code)
+  console.log(keys)
+  if (event.code != keys.code 
     || keys.leftShift != shifts.left
     || keys.rightShift != shifts.right) {
       return
@@ -117,12 +122,30 @@ function removeSelect() {
 // функция выделает элементы,создаёт в глобальном масссив с клавишами
 // для выделения и валидации
 function selectKeys(char) {
+  // если клавиша уже встречалась
+  if (keysMap.has(char)) {
+    const keyConfig = keysMap.get(char)
+    const $key = $(`[data-code="${keyConfig.code}"]`)
+    $key.addClass('highlight-key')
+
+    keys.code = keyConfig.code
+    keys.leftShift = keyConfig.leftShift
+    keys.rightShift = keyConfig.rightShift
+  }
+
   $('.row').children().each(function() {
     // проверка на знаки и числа
     if ( $(this).html().toLowerCase() == char.toLowerCase() ) {
       const $key = $(this)
-      const which = $key.attr('data-which')
-      keys.keyWhich = which
+      const code = $key.attr('data-code')
+      const config = {
+        code: null,
+        leftShift: false,
+        rightShift: false
+      }
+
+      keys.code = code
+      config.code = code
       $key.addClass('highlight-key')
 
       // устанавливает флаги для левого и правого шифта
@@ -131,57 +154,113 @@ function selectKeys(char) {
         if ( ['Q', 'A', 'Z', 'W', 'S', 'X', 'E', 'D', 'C', 'R',
         'F', 'V', 'T', 'G', 'B'].includes(char) ) {
           keys.rightShift = true
+          config.rightShift = true
           $('.right-shift').addClass('highlight-key')
         } else {
           // клавиши справа -> шифт слева
           keys.leftShift = true
+          config.leftShift = true
           $('.left-shift').addClass('highlight-key')
         }
       }
+
+      keysMap.set(char, config)
     }
 
     // проверка на кавычки
     if ( /^["“'”’]$/.test(char) && $(this).html()==="'" ) {
       const $key = $(this)
-      const which = $key.attr('data-which')
-      keys.keyWhich = which
+      const code = $key.attr('data-code')
+      const config = {
+        code: null,
+        leftShift: false,
+        rightShift: false
+      }
+
+      keys.code = code
+      config.code = code
 
       $key.addClass('highlight-key')
 
       if (/^["“”]$/.test(char)) {
         keys.leftShift = true
+        config.leftShift = true
         $('.left-shift').addClass('highlight-key')
       }
+
+      keysMap.set(char, config)
     }
 
     // проверка на пробел
     if ( $(this).hasClass('space') && char==' ' ) {
-      const $key = $(this)
-      const which = $key.attr('data-which')
-      keys.keyWhich = which
+      setSelect($(this))
+    }
+
+    function setSelect($key, shift=null) {
+      //const $key = $(this)
+      console.log('from setSelect ', $key.attr('data-code'))
+      const code = $key.attr('data-code')
+      const config = {
+        code: null,
+        leftShift: false,
+        rightShift: false
+      } 
+
+      config.code = code
+      keys.code = code
+
+      if (shift) {
+        keys[shift] = true
+        config[shift] = true
+        if (shift === 'leftShift') {
+          $('.left-shift').addClass('highlight-key')
+        } else if (shift === 'rightShift') {
+          $('.right-shift').addClass('highlight-key')
+        }
+      }
 
       $key.addClass('highlight-key')
+      keysMap.set(char, config)
     }
 
     // проверка на `
     if ( char==='`' && $(this).html()==='`' ) {
-      const $key = $(this)
-      const which = $key.attr('data-which')
-      keys.keyWhich = which
-
-      $key.addClass('highlight-key')
+      setSelect($(this))
     } 
 
     // проверка на !
     if ( char==='!' && $(this).html()==='1' ) {
-      const $key = $(this)
-      const which = $key.attr('data-which')
+      /*const $key = $(this)
+      const which = $key.attr('data-code')
+      const config = {
+        keyWhich: null,
+        leftShift: false,
+        rightShift: false
+      }
+
+      config.keyWhich = which
       keys.keyWhich = which
 
       keys.rightShift = true
+      config.rightShift = true
       $('.right-shift').addClass('highlight-key')
 
       $key.addClass('highlight-key')
+      keysMap.set(char, config)*/
+      setSelect($(this), 'rightShift')
+    }
+
+    // проверка на ?
+    if ( char==='?' && $(this).html()==='/' ) {
+      setSelect($(this), 'leftShift')
+    }
+
+    // проверка на ;
+    if ( char===':' && $(this).html()===';' ) {
+      console.log(":")
+      setSelect($(this), 'leftShift')
     }
   })
+
+  console.log(keys)
 }
