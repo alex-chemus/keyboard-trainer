@@ -30,7 +30,7 @@ function fetchData() {
       if (dataIsValid(data)) {
         appendText($text, data)
       } else {
-        fetchData()
+        setTimeout(fetchData, 1000)
       }
      })
 }
@@ -38,6 +38,7 @@ function fetchData() {
 //проверка на валидность текста
 function dataIsValid(data) {
   const regex = /[\sa-zA-Z0-9=[\]:;'",.?/!-]+/gi
+  if (data.length > 200) return false;
   return regex.test(data)
 }
 
@@ -82,8 +83,7 @@ function handleKeyup(event) {
 
   // закончить тренинг
   if (!$rest.html().length) {
-    $('.text-container, .keyboard').css('display', 'none')
-    $('.success').css('display', 'block')
+    $('.screenlock').css('display', 'flex')
   }
 
   // валидация правильности нажатия 
