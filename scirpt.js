@@ -37,8 +37,7 @@ function fetchData() {
 
 //проверка на валидность текста
 function dataIsValid(data) {
-  const regex = /[\sa-zA-Z0-9=[\]:;'",.?/!-]+/gi
-  if (data.length > 200) return false;
+  const regex = /^[\sa-zA-Z0-9=[\]:;"“'”’,.?/!-]+$/gi
   return regex.test(data)
 }
 
